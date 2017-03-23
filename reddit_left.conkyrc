@@ -1,0 +1,74 @@
+alignment top_left
+background  true
+border_width  0
+cpu_avg_samples  2
+color0 4d4d47
+color1 7a8d5f
+color2 1e211a
+default_color  white
+default_outline_color  white
+default_shade_color  white
+draw_borders  false
+draw_graph_borders  true
+draw_outline  false
+draw_shades  false
+double_buffer  true
+use_xft  true
+xftfont DejaVu Sans Mono:size=10
+gap_x  5
+gap_y  0
+minimum_height  5
+minimum_width  5
+net_avg_samples  2
+no_buffers  true
+out_to_console  false
+out_to_stderr  false
+extra_newline  false
+own_window true
+own_window_class Conky
+own_window_type desktop
+own_window_hints 'undecorated, below, sticky, skip_taskbar'
+own_window_transparent yes
+pad_percents  3.0
+stippled_borders  0
+update_interval  1.0
+uppercase  false
+use_spacer  'left'
+show_graph_scale  false
+show_graph_range  false
+
+TEXT 
+
+${color2}│${color0}
+${color2}│${color0}
+${color2}├─╶${color0} System
+${color2}│  ├─╶${color0} distro ${color1}[${color0}Bunsenlabs Hydrogen: ${execi 1000 uname -m} ${color1}]${color0}
+${color2}│  ├─╶${color0} User ${color1}  [${color0} ${uid_name 1000} ${color1}]${color0}
+${color2}│  ├─╶${color0} Host ${color1}  [${color0} $nodename ${color1}]${color0}
+${color2}│  └─╶${color0} Uptime ${color1}[${color0} $uptime ${color1}]${color0}
+${color2}│  
+${color2}├─╶${color0} Power
+${color2}│ └─╶${color0} Battery
+${color2}│    ├─╶${color0} Status ${color1}  [${color0} ${battery BAT1} ${color1}]${color0}
+${color2}│    └─╶${color0}${color0} ${battery_bar 10,248 BAT1}${color0}
+${color2}│  
+${color2}└─╶${color0} Internet
+${color2}  ├─╶${color0} IP
+${color2}  │  ├─╶${color0} Private ${color1}  [${color0} ${execi 1.0 hostname -I}${color1}]${color0}
+${color2}  │  └─╶${color0} Public ${color1}   [${color0} ${execi 90 curl ipinfo.io/ip} ${color1}]${color0}
+${color2}  │    ├─╶${color0} Country ${color1}[${color0} ${execi 90 curl ipinfo.io/country} ${color1}]${color0}
+${color2}  │    ├─╶${color0} Region ${color1} [${color0} ${execi 90 curl ipinfo.io/region} ${color1}]${color0}
+${color2}  │    ├─╶${color0} City ${color1}   [${color0} ${execi 90 curl ipinfo.io/city} ${color1}]${color0}
+${color2}  │    ├─╶${color0} Coords ${color1} [${color0} ${execi 90 curl ipinfo.io/loc} ${color1}]${color0}
+${color2}  │    └─╶${color0} Org ${color1}    [${color0} ${execi 90 curl ipinfo.io/org} ${color1}]${color0}
+${color2}  ├─╶${color0} Network
+${color2}  │  └─╶ ${color0} Wireless ${color1}[${color0} ${if_up wlan0}${exec iwgetid -r}${else}*${endif} ${color1}]${color0}
+${color2}  ├─╶${color0} VPN 
+${color2}  │  └─╶ ${color0} Status ${color1}  [${color0} ${if_up tun0}${color green}ENGAGED${else}${color red}DISENGAGED${endif} ${color1}]${color0}
+${color2}  └─╶${color0} Speed
+${color2}    ├─╶${color0} Download ${color1}  [${color0} ${downspeed wlan0} ${color1}]${color0}
+${color2}    ├─╶ ${downspeedgraph wlan0 20, 250 1e211a 1e211a} ${color0}
+${color2}    ├─╶${color0} Upload  ${color1}   [${color0} ${upspeed wlan0} ${color1}]${color0}
+${color2}    └─╶ ${upspeedgraph wlan0 20, 250 1e211a 1e211a}${color0}
+
+
